@@ -306,7 +306,7 @@ resource "aws_db_instance" "db_instance" {
   username               = "dbuser"
   password               = "dbpass1234"
   db_subnet_group_name   = "${aws_db_subnet_group.db_subnet_group.name}"
-  vpc_security_group_ids = ["${aws_security_group.vpc_default_sg.id}"]
+  vpc_security_group_ids = ["${data.aws_security_group.vpc_default_sg.id}"]
   skip_final_snapshot    = true
 }
 
@@ -335,7 +335,7 @@ resource "aws_security_group_rule" "public_http" {
 resource "aws_alb" "alb" {
   name            = "alb-myapp"
   internal        = false
-  security_groups = ["${aws_security_group.vpc_default_sg.id}", "${aws_security_group.public_http.id}"]
+  security_groups = ["${data.aws_security_group.vpc_default_sg.id}", "${aws_security_group.public_http.id}"]
   subnets         = ["${aws_subnet.public_subnet.ids}"]
 }
 
