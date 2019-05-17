@@ -336,7 +336,7 @@ resource "aws_alb" "alb" {
   name            = "alb-myapp"
   internal        = false
   security_groups = ["${data.aws_security_group.vpc_default_sg.id}", "${aws_security_group.public_http.id}"]
-  subnets         = ["${aws_subnet.public_subnet.ids}"]
+  subnets         = ["${aws_subnet.public_subnet.*.id}"]
 }
 
 /*

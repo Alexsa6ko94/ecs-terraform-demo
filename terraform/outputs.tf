@@ -37,3 +37,7 @@ output "dbusername" {
 output "dbpassword" {
   value = "${aws_db_instance.db_instance.password}"
 }
+
+output "ALB_DNS" {
+  value = "${aws_alb.alb.dns_name}"
+}
